@@ -81,6 +81,25 @@
     .progress-area {
       position: relative;
     }
+    .heart {
+      position: absolute;
+      bottom: 0;
+      font-size: 24px;
+      color: #ff69b4;
+      animation: floatUp 2s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      }
+      100% {
+      opacity: 0;
+      transform: translateY(-200px) scale(1.5);
+      }
+    }
   </style>
 </head>
 <body>
@@ -98,6 +117,8 @@
   </div>
 
   <div id="message"></div>
+
+  <div id="heart-container"></div>
 
   <script>
   function checkName() {
@@ -136,12 +157,29 @@
         clearInterval(interval);
         if (isCute) {
           message.textContent = "Unbelievable! Your Cuteness is 300% ไม่คิดว่าจะมีคนที่กลมและนิ่มได้ขนาดนี้ !!!";
+          showHearts();
         } else {
           message.textContent = "SORRY NA แต่เหมือนคุณยังไม่น่ารักมากพอพอ... ไปเพิ่มความกลมแล้วลองใหม่อีกครั้ง 😉";
         }
       }
     }, 30);
   }
+    function showHearts() {
+      const heartContainer = document.getElementById("heart-container");
+
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+        heart.textContent = "💖";
+        heartContainer.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 2000);
+      }
+    }
 </script>
 </body>
 </html>
