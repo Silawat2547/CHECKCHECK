@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YOUR APPEARANCE</title>
+  <title>YOUR CUTENESSS</title>
   <style>
     body {
       font-family: sans-serif;
@@ -54,11 +54,10 @@
     }
 
     #hamster {
-      position: fixed;
-      bottom: 10px;
-      left: -150px;
+      position: relative;
+      bottom: 0px;
       width: 120px;
-      transition: left 0.5s linear;
+      margin-top: 10px;
     }
 
     @keyframes runAcross {
@@ -68,35 +67,54 @@
 
     .running {
       animation: runAcross 5s linear forwards;
+      position: absolute;
+      bottom: -40px;
+    }
+
+    #message {
+      font-size: 20px;
+      color: #ff1493;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .progress-area {
+      position: relative;
     }
   </style>
 </head>
 <body>
 
-  <h1>CHECKING หน้าตาจากชื่อ เชื่อถือได้ 300%!</h1>
-  <input type="text" id="nameInput" placeholder="TYPE YOUR NAME!!" />
+  <h1>เช็คความหน้าตาดีจากชื่อ เชื่อถือได้ 300% !!!</h1>
+  <input type="text" id="nameInput" placeholder="TYPE YOUR NAME" />
   <br/>
-  <button onclick="checkName()">CHECKING</button>
+  <button onclick="checkName()">CHECK IT NOW!</button>
 
-  <div class="progress-container">
-    <div id="progressBar" class="progress-bar">0%</div>
+  <div class="progress-area">
+    <div class="progress-container">
+      <div id="progressBar" class="progress-bar">0%</div>
+    </div>
+    <img src="https://media.tenor.com/rxVUpkCWzHcAAAAi/hamster-running.gif" id="hamster" />
   </div>
 
-  <img src="https://media.tenor.com/rxVUpkCWzHcAAAAi/hamster-running.gif" id="hamster" />
+  <div id="message"></div>
 
   <script>
     function checkName() {
       const name = document.getElementById("nameInput").value.trim().toUpperCase();
       const progressBar = document.getElementById("progressBar");
       const hamster = document.getElementById("hamster");
+      const message = document.getElementById("message");
 
       let finalPercent = (name === "BAMBAM") ? 100 : 0;
       let currentPercent = 0;
 
-      // reset bar & hamster
+      // Reset everything
       progressBar.style.width = "0%";
       progressBar.textContent = "0%";
+      message.textContent = "";
       hamster.classList.remove("running");
+      hamster.style.left = "-150px";
       hamster.offsetHeight; // force reflow
       hamster.classList.add("running");
 
@@ -107,8 +125,13 @@
           progressBar.textContent = currentPercent + "%";
         } else {
           clearInterval(interval);
+          if (name === "BAMBAM") {
+            message.textContent = "Unbelievable! Your Cuteness is 300% ไม่คิดว่าจะมีคนที่กลมและนิ่มได้นาดนี้ !!!";
+          } else {
+            message.textContent = "SORRY NA แต่เหมือนคุณยังไม่น่ารักมากพอพอ... ไปเพิ่มความกลมแล้วลองใหม่อีกครั้ง 😉";
+          }
         }
-      }, 30); 
+      }, 30);
     }
   </script>
 </body>
