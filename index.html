@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>TEST YOUR APPEARANCE</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background-color: #f0f8ff;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 24px;
+    }
+    .bar-container {
+      width: 300px;
+      height: 25px;
+      border: 1px solid #aaa;
+      margin: 10px auto;
+      background-color: white;
+      border-radius: 5px;
+    }
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      background-color: green;
+      border-radius: 5px;
+      transition: width 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <h1>TEST YOUR APPEARANCE</h1>
+  <p>TYPE YOUR NAME!</p>
+  <input type="text" id="nameInput" placeholder="TYPING...">
+  <button onclick="checkName()">CHECK!</button>
+
+  <div id="result"></div>
+  <div class="bar-container">
+    <div class="bar-fill" id="bar"></div>
+  </div>
+
+  <script>
+    function checkName() {
+      const input = document.getElementById("nameInput").value.trim().toUpperCase();
+      const result = document.getElementById("result");
+      const bar = document.getElementById("bar");
+
+      if (input === "BAMBAM") {
+        result.textContent = "YOUR ARE SO CUTE AND นิ่มแล้วก็กลมมากกก 100% 😍";
+        bar.style.width = "100%";
+        bar.style.backgroundColor = "green";
+      } else if (input === "") {
+        result.textContent = "TYPE YOUR NAME FIRST NAAA 🤔";
+        bar.style.width = "0%";
+      } else {
+        result.textContent = "SORRY ABOUT THAT ที่ไม่นิ่มเหมือน BAMU 0% 😅";
+        bar.style.width = "0%";
+        bar.style.backgroundColor = "red";
+      }
+    }
+  </script>
+</body>
+</html>
